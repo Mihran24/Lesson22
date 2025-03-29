@@ -24,6 +24,9 @@ pygame.display.set_icon(icon)
 
 
 playerImg = pygame.image.load('Rocket.png')
+DEFAULT_IMAGE_SIZE=(50,50)
+
+playerImg = pygame.transform.scale(playerImg, DEFAULT_IMAGE_SIZE)
 playerX = PLAYER_START_X
 playerY = PLAYER_START_Y
 playerX_change = 0
@@ -37,6 +40,8 @@ num_of_enemies = 6
 
 for i in range(num_of_enemies):
     enemyImg.append(pygame.image.load('Alien.png'))
+    DEFAULT_IMAGE_SIZE=(50,50)
+    enemyImg = pygame.transform.scale(enemyImg, DEFAULT_IMAGE_SIZE)
     enemyX.append(random.randint(0, SCREEN_WIDTH - 64))
     enemyY.append(random.randint(ENEMY_START_Y_MAX, ENEMY_START_Y_MAX))
     enemyX_change.append(ENEMY_SPEED_X)
@@ -44,6 +49,9 @@ for i in range(num_of_enemies):
 
 
 bulletImg = pygame.image.load('bullet.png')
+DEFAULT_IMAGE_SIZE=(25,25)
+
+bulletImg = pygame.transform.scale(bulletImg, DEFAULT_IMAGE_SIZE)
 bulletX = 0
 bulletY = PLAYER_START_Y
 bulletX_change = 0
@@ -98,7 +106,7 @@ while running:
                     bulletX = playerX
                 fire_bullet(bulletX, bulletY)
             if event.type == pygame.KEYUP and event.key in [pygame.K_LEFT, pygame.K_RIGHT]:
-                playerX_change = 0
+                 playerX_change = 0
 
         playerX += playerX_change
         playerX = max(0, min(playerX, SCREEN_WIDTH - 64))
@@ -134,4 +142,4 @@ while running:
 
         player(playerX , playerY)
         show_score(textX, textY)
-        pygame.display.update
+        pygame.display.update()
